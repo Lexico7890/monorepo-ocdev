@@ -43,6 +43,7 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
               Welcome, <b>{user.name}</b>!
             </span>
             <Button size="small" onClick={onLogout} label="Log out" />
+            <button className="btn btn-accent">Accent</button>
           </>
         ) : (
           <>
