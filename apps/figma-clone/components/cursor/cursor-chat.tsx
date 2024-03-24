@@ -22,7 +22,8 @@ const CursorChat = ({
     if (event.key === 'Enter') {
       setCursorState({
         mode: CursorMode.Chat,
-        previousMessage: cursorState.mode === CursorMode.Chat ? cursorState.message : '',
+        previousMessage:
+          cursorState.mode === CursorMode.Chat ? cursorState.message : '',
         message: ''
       })
     } else if (event.key === 'Escape') {
@@ -42,7 +43,10 @@ const CursorChat = ({
       {cursorState.mode === CursorMode.Chat && (
         <>
           <CursorSVG color="#000" />
-          <div className="absolute left-2 top-5 bg-blue-400 px-4 py-2 text-sm leading-relaxed text-white rounded-[20px]">
+          <div
+            className="absolute left-2 top-5 bg-blue-400 px-4 py-2 text-sm leading-relaxed text-white rounded-[20px]"
+            onKeyUp={(e) => { e.stopPropagation() }}
+          >
             {cursorState.previousMessage && (
               <div>{cursorState.previousMessage}</div>
             )}

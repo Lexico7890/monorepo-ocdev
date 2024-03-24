@@ -239,10 +239,10 @@ export const handleCanvasObjectMoving = ({
   options: fabric.IEvent
 }) => {
   // get target object which is moving
-  const target = options.target as fabric.Object
+  const target = options.target!
 
   // target.canvas is the canvas on which the object is moving
-  const canvas = target.canvas as fabric.Canvas
+  const canvas = target.canvas!
 
   // set coordinates of target object
   target.setCoords()
@@ -283,7 +283,7 @@ export const handleCanvasSelectionCreated = ({
   if (!options?.selected) return
 
   // get the selected element
-  const selectedElement = options?.selected[0] as fabric.Object
+  const selectedElement = options?.selected[0]
 
   // if only one element is selected, set element attributes
   if (selectedElement && options.selected.length === 1) {

@@ -1,3 +1,5 @@
+'use client'
+
 import { useBroadcastEvent, useEventListener, useMyPresence, useOthers } from '@/liveblocks.config'
 import React, { useCallback, useEffect, useState } from 'react'
 import LiveCursors from './cursor/live-cursors'
@@ -7,7 +9,11 @@ import ReactionSelector from './reaction/reaction-button'
 import FlyingReaction from './reaction/flying-reaction'
 import useInterval from '@/hooks/useInterval'
 
-const Live = () => {
+interface Props {
+  canvasRef: React.MutableRefObject<HTMLCanvasElement | null>
+}
+
+const Live = ({ canvasRef }: Props) => {
   const [cursorState, setCursorState] = useState<CursorState>({
     mode: CursorMode.Hidden
   })
@@ -119,13 +125,14 @@ const Live = () => {
 
   return (
     <div
+      id='canvas'
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       className='h-[100vh] w-full flex justify-center items-center text-center'
     >
-      <p className='text-2xl text-white'>Liveblocks collaboration Figma</p>
+      <canvas ref={canvasRef}/>
       {reaction.map((r) => (
         <FlyingReaction
           timestamp={r.timestamp}
